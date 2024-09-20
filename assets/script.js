@@ -1,14 +1,7 @@
 // dom code
 
-const body = document.querySelector("body");
-
-const newBookBtn = document.createElement("button");
-newBookBtn.textContent = "NEW BOOK";
-newBookBtn.classList.add("new-book");
-
-const container = document.createElement("main");
-
-body.appendChild(newBookBtn);
+const container = document.querySelector(".container");
+const card = document.createElement("section");
 
 // library code
 

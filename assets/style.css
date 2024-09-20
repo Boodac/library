@@ -4,6 +4,52 @@
     box-sizing: border-box;
 }
 
+body { 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.header {
+    padding: 1rem;
+    text-align: center;
+    flex-grow: 0;
+    background: linear-gradient(to right, #f4c2c2, #89cff0);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.5);
+}
+
+.title {
+    color: white;
+    font-size: 4rem;
+    text-shadow: 0 0 0.5rem #524141;
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.controls {
+    padding: 1rem;
+    text-align: center;
+    flex-grow: 0;
+    background: linear-gradient(to right, #f4c2c2, #89cff0);
+    box-shadow: 0 -0.25rem 0.5rem rgba(0,0,0,0.5);
+}
+
+.controls p {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 0.5rem #524141;
+}
+
 .new-book {
+    font-size: 1rem;
     padding: 1rem 2rem;
+    margin: 0 0 1rem;
+    border-radius: 1.25em;
+    border: none;
+    box-shadow: 0.125rem 0.125rem 0.5rem rgba(0,0,0,0.3);
 }
