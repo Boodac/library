@@ -67,7 +67,7 @@ body {
     text-align: center;
     flex-direction: column;
 
-    display: flex;
+    display: none;
 }
 
 #form-container form {

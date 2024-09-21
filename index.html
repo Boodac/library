@@ -19,14 +19,14 @@
     </footer>
     <aside id="form-container">
         <h1>Add A New Book</h1>
-        <form>
-            <label for="title">Title<br /><input type="text" name="title" required></label>
-            <label for="author">Author<br /><input type="text" required></label>
-            <label for="pagecount">Page Count<br /><input type="number"></label>
-            <label for="wordcount">Word Count<br /><input type="number"></label>
-            <label for="year">Year Published<br /><input type="number"></label>
-            <label for="isbn">ISBN-13<br /><input type="text"></label>
-            <label for="genre">Primary Genre<br /><input type="text" list="genre"></label>
+        <form id="book">
+            <label for="title">Title<br /><input type="text" name="title" required /></label>
+            <label for="author">Author<br /><input type="text" name="author" required /></label>
+            <label for="pagecount">Page Count<br /><input type="number" name="pagecount" /></label>
+            <label for="wordcount">Word Count<br /><input type="number" name="wordcount" /></label>
+            <label for="year">Year Published<br /><input type="number" name="year" /></label>
+            <label for="isbn">ISBN-13<br /><input type="text" name="isbn" /></label>
+            <label for="genre">Primary Genre<br /><input type="text" list="genre" /></label>
             <datalist id="genre">
                 <option value="nystery"></option>
                 <option value="fantasy"></option>
@@ -46,7 +46,7 @@
             </datalist>
             <label>Have you read this yet?<br /><input type="checkbox"></label>
         </form>
-        <button type="submit">ADD THIS BOOK</button>
+        <button type="reset" form="book" class="submission">ADD THIS BOOK</button>
     </aside>
     <script src="/assets/script.js"></script>
 </body>

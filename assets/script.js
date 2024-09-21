@@ -2,13 +2,24 @@
 
 const container = document.querySelector(".container");
 const card = document.createElement("section");
+card.style = "background-color: black; width: 20%; aspect-ratio: 1;"
 const newBookBtn = document.querySelector(".new-book");
 const formContainer = document.querySelector("#form-container");
+const form = document.querySelector("form");
+const submitBtn = document.querySelector(".submission");
+formContainer.toggle = () => {
+    (formContainer.style["display"] === "flex") ? formContainer.style["display"] = "none" : formContainer.style["display"] = "flex";
+}
 
+submitBtn.addEventListener("click", (e) => {
+    formContainer.toggle();
+    console.log(form);
+});
 
 newBookBtn.addEventListener("click", (e) => {
-    (formContainer.style["display"] === "none") ? formContainer.style["display"] = "flex" : formContainer.style["display"] = "none";
+    formContainer.toggle();
 });
+
 
 // library code
 
