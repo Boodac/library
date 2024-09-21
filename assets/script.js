@@ -2,6 +2,13 @@
 
 const container = document.querySelector(".container");
 const card = document.createElement("section");
+const newBookBtn = document.querySelector(".new-book");
+const formContainer = document.querySelector("#form-container");
+
+
+newBookBtn.addEventListener("click", (e) => {
+    (formContainer.style["display"] === "none") ? formContainer.style["display"] = "flex" : formContainer.style["display"] = "none";
+});
 
 // library code
 
