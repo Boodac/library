@@ -43,11 +43,24 @@
                 <option value="true crime"></option>
                 <option value="biography"></option>
                 <option value="memoir"></option>
+                <option value="satire"></option>
             </datalist>
             <label>Have you read this yet?<br /><input type="checkbox"></label>
         </form>
         <button type="reset" form="book" class="submission">ADD THIS BOOK</button>
     </aside>
+    <template id="bookCard">
+        <section class="card">
+            <p class="cTitle"></h1>
+            <p class="author"></p>
+            <p class="pageCount"></p>
+            <p class="wordCount"></p>
+            <p class="year"></p>
+            <p class="isbn13"></p>
+            <p class="genre"></p>
+            <p class="status"></p>
+        </section>
+    </template>
     <script src="/assets/script.js"></script>
 </body>
 </html>
