@@ -32,13 +32,13 @@ let myLibrary = {
     buildCard: function(libraryIndex) {
         const card = template.content.cloneNode(true);
         let entry = card.querySelectorAll("p");
-        entry[0].textContent = "Title: " + myLibrary.books[libraryIndex].name;
-        entry[1].textContent = "Author: " + myLibrary.books[libraryIndex].author;
-        entry[2].textContent = "Published: " + myLibrary.books[libraryIndex].year;
-        entry[3].textContent = "Word Count: " + myLibrary.books[libraryIndex].wordCount;
-        entry[4].textContent = "Page Count: " + myLibrary.books[libraryIndex].pageCount;
-        entry[5].textContent = "ISBN-13: " + myLibrary.books[libraryIndex].isbn13;
-        entry[6].textContent = "Genre: " + myLibrary.books[libraryIndex].genre;
+        entry[0].querySelector("span").textContent = myLibrary.books[libraryIndex].name;
+        entry[1].querySelector("span").textContent = myLibrary.books[libraryIndex].author;
+        entry[2].querySelector("span").textContent = myLibrary.books[libraryIndex].year;
+        entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].wordCount;
+        entry[4].querySelector("span").textContent = myLibrary.books[libraryIndex].pageCount;
+        entry[5].querySelector("span").textContent = myLibrary.books[libraryIndex].isbn13;
+        entry[6].querySelector("span").textContent = myLibrary.books[libraryIndex].genre;
         entry[7].textContent = myLibrary.books[libraryIndex].status;
         myLibrary.books[libraryIndex].status === "unread" ? card.children[0].classList.add("unread") : card.children[0].classList.add("read");
         container.appendChild(card);

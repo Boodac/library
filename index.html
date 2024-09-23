@@ -19,15 +19,15 @@
     </footer>
     <aside id="form-container">
         <h1>Add A New Book</h1>
-        <form id="book">
-            <label for="title">Title<br /><input type="text" id="title" required /></label>
-            <label for="author">Author<br /><input type="text" id="author" required /></label>
+        <form name="book" id="book" action="index.html" method="post" target="_blank">
+            <label for="title">Title<br /><input type="text" id="title" /></label>
+            <label for="author">Author<br /><input type="text" id="author" /></label>
             <label for="pagecount">Page Count<br /><input type="number" id="pagecount" /></label>
             <label for="wordcount">Word Count<br /><input type="number" id="wordcount" /></label>
             <label for="year">Year Published<br /><input type="number" id="year" /></label>
             <label for="isbn">ISBN-13<br /><input type="text" id="isbn" /></label>
             <label for="genre">Primary Genre<br /><input type="text" id="genre" list="genreList" /></label>
-            <label for="status">Have you read this yet?<br /><input type="checkbox" id="status" /></label>
+            <label for="status">Previously Read<input type="checkbox" id="status" /></label>
             <datalist id="genreList">
                 <option value="nystery"></option>
                 <option value="fantasy"></option>
@@ -47,17 +47,17 @@
                 <option value="satire"></option>
             </datalist>
         </form>
-        <button type="reset" form="book" class="submission">ADD THIS BOOK</button>
+        <button type="submit" form="book" class="submission">ADD THIS BOOK</button>
     </aside>
     <template id="bookCard">
         <section class="card">
-            <p class="cTitle"></h1>
-            <p class="author"></p>
-            <p class="pageCount"></p>
-            <p class="wordCount"></p>
-            <p class="year"></p>
-            <p class="isbn13"></p>
-            <p class="genre"></p>
+            <p class="cTitle">Title: <span></span></h1>
+            <p class="author">Author: <span></span></p>
+            <p class="pageCount">Page Count: <span></span></p>
+            <p class="wordCount">Word Count: <span></span></p>
+            <p class="year">Published:  <span></span></p>
+            <p class="isbn13">ISBN (13):  <span></span></p>
+            <p class="genre">Genre:  <span></span></p>
             <p class="status"></p>
         </section>
     </template>
