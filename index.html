@@ -48,17 +48,19 @@
             </datalist>
         </form>
         <button type="submit" form="book" class="submission">ADD THIS BOOK</button>
+        <span id="formClose" class="close-button">x</span>
     </aside>
     <template id="bookCard">
         <section class="card">
-            <p class="cTitle">Title: <span></span></h1>
-            <p class="author">Author: <span></span></p>
-            <p class="pageCount">Page Count: <span></span></p>
-            <p class="wordCount">Word Count: <span></span></p>
-            <p class="year">Published:  <span></span></p>
-            <p class="isbn13">ISBN (13):  <span></span></p>
-            <p class="genre">Genre:  <span></span></p>
+            <p class="cTitle"></h1>
+            <p>Written by <span class="author"></span></p>
+            <p>Published: <span class="year"></span></p>
+            <p>Word Count: <span class="wordCount"></span></p>
+            <p>Page Count:  <span class="pageCount"></span></p>
+            <p>ISBN (13):  <span class="isbn13"></span></p>
+            <p>Primary Genre:  <span class="genre"></span></p>
             <p class="status"></p>
+            <span class="close-button">x</span>
         </section>
     </template>
     <script src="/assets/script.js"></script>

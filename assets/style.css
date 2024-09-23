@@ -5,7 +5,7 @@
 }
 
 body { 
-    font-size: min(1rem, 2vmax);
+    font-size: 1.125rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -31,14 +31,17 @@ body {
     flex-basis: 100dvh;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(45ch, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(max-content, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(max-content, 1fr));
     overflow-y: auto;
-    padding: 2rem;
+    margin-top: 0.375em;
+    margin-bottom: 0.375em;
+    padding: 1.5rem;
     gap: 1.5rem;
 }
 
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,9 +52,16 @@ body {
     line-height: 1.5em;
 }
 
-.card .status {
+.status {
     align-self: flex-end;
     text-transform: uppercase;
+}
+
+.cTitle {
+    font-size: 1.375em;
+    font-weight: 600;
+    color: #777;
+    padding: 0 0 1em;
 }
 
 .unread:not(#_) {
@@ -98,7 +108,6 @@ body {
     padding: 1rem;
     text-align: center;
     flex-direction: column;
-
     display: none;
 }
 
@@ -113,6 +122,20 @@ body {
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0.125rem 0.25rem 0.5rem rgba(0,0,0,0.4) inset;
+}
+
+.close-button {
+    color: rgba(255, 0, 0, 0.521);
+    font-weight: 1000;
+    font-size: 2em;
+    display: block;
+    position: absolute;
+    top: min(1rem, 2%);
+    right: min(1rem, 2%);
+}
+
+.close-button:hover, button:hover, label[for="status"]:hover {
+    cursor: pointer;
 }
 
 form label:not([for="status"]) {
