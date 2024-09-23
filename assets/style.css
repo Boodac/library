@@ -61,7 +61,11 @@ body {
     font-size: 1.375em;
     font-weight: 600;
     color: #777;
-    padding: 0 0 1em;
+    padding: 0;
+}
+
+.author, .year, .genre {
+    font-weight: 600;
 }
 
 .unread:not(#_) {
@@ -131,10 +135,10 @@ body {
     display: block;
     position: absolute;
     top: min(1rem, 2%);
-    right: min(1rem, 2%);
+    right: min(1rem, 5%);
 }
 
-.close-button:hover, button:hover, label[for="status"]:hover {
+.close-button:hover, .status:hover, button:hover, label[for="status"]:hover {
     cursor: pointer;
 }
 

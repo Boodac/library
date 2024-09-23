@@ -42,21 +42,44 @@ let myLibrary = {
         entry[0].textContent = myLibrary.books[libraryIndex].name;
         entry[1].querySelector("span").textContent = myLibrary.books[libraryIndex].author;
         entry[2].querySelector("span").textContent = myLibrary.books[libraryIndex].year;
-        entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].wordCount;
-        entry[4].querySelector("span").textContent = myLibrary.books[libraryIndex].pageCount;
-        entry[5].querySelector("span").textContent = myLibrary.books[libraryIndex].isbn13;
-        entry[6].querySelector("span").textContent = myLibrary.books[libraryIndex].genre;
-        entry[7].textContent = myLibrary.books[libraryIndex].status;
+
+        if(myLibrary.books[libraryIndex].wordCount == 0) {
+            entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].pageCount + " pages";
+        }
+        else if(myLibrary.books[libraryIndex].pageCount == 0) {
+            entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].wordCount + " words";
+        }
+        else if(myLibrary.books[libraryIndex].pageCount > 0 && myLibrary.books[libraryIndex].wordCount > 0) {
+            entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].pageCount + " pages [" +
+                                                         myLibrary.books[libraryIndex].wordCount + " words]";
+        }
+        else entry[3].querySelector("span").textContent = "Unknown";
+        
+        entry[4].querySelector("span").textContent = myLibrary.books[libraryIndex].isbn13;
+        entry[5].querySelector("span").textContent = myLibrary.books[libraryIndex].genre;
+        entry[6].textContent = myLibrary.books[libraryIndex].status;
         myLibrary.books[libraryIndex].status === "unread" ? card.children[0].classList.add("unread") : card.children[0].classList.add("read");
         let closeButton = card.querySelector(".close-button");
         closeButton.addEventListener("click", (e) => {
             myLibrary.removeCard(libraryIndex);
+        });
+        let statusButton = card.querySelector(".status");
+        statusButton.addEventListener("click", (e) => {
+            myLibrary.changeStatus(libraryIndex);
         })
         container.appendChild(card);
     },
     removeCard: function(libraryIndex) {
-        let identity = document.getElementById("_" + myLibrary.books[libraryIndex].id);
+        const identity = document.getElementById("_" + libraryIndex);
         container.removeChild(identity);
+    },
+    changeStatus: function(libraryIndex) {
+        const identity = document.getElementById("_" + libraryIndex);
+        const statusBtn = identity.querySelector(".status");
+        statusBtn.textContent === "read" ? statusBtn.textContent = "unread" : statusBtn.textContent = "read";
+        if(identity.classList.contains("read")) {
+            identity.classList.replace("read", "unread");
+        } else identity.classList.replace("unread", "read");
     }
 };
 
@@ -79,8 +102,8 @@ function Book(bookName = "The Default Book", authorName = "boodac", yearPublishe
     } else this.length = -1;
 }
 
-const _Pride = new Book("Pride and Prejudice", "Jane Austen", "1813", "unread", 279, 122204, "978-0144139518", "romance");
-const _Kill = new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 281, 99121, "978-0060935467", "literary fiction");
+const _Pride = new Book("Pride and Prejudice", "Jane Austen", "1813", "unread", 279, 0, "978-0144139518", "romance");
+const _Kill = new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 0, 99121, "978-0060935467", "literary fiction");
 const _Farm = new Book("Animal Farm", "George Orwell", "1945", "read", 92, 29966, "978-0452284241", "satire");
 myLibrary.add(_Pride);
 myLibrary.add(_Kill);
