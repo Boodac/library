@@ -147,3 +147,4 @@ function Book(bookName = "The Default Book", authorName = "Anonymous", yearPubli
 }
 
 myLibrary.buildCard(myLibrary.add(new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 0, 99121, "978-0060935467", "literary fiction")));
+myLibrary.buildCard(myLibrary.add(new Book("The Ingenious Gentleman Don Quixote of La Mancha", "Miguel de Cervantes", "", "read", 940, 345390, "978-0142437230", "satire")));
