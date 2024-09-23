@@ -146,13 +146,4 @@ function Book(bookName = "The Default Book", authorName = "Anonymous", yearPubli
     } else this.length = -1;
 }
 
-const _Pride = new Book();
-const _Kill = new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 0, 99121, "978-0060935467", "literary fiction");
-const _Farm = new Book("Animal Farm", "George Orwell", "1945", "read", 92, 29966, "978-0452284241", "satire");
-myLibrary.add(_Pride);
-myLibrary.add(_Kill);
-myLibrary.add(_Farm);
-
-myLibrary.buildCard(0);
-myLibrary.buildCard(1);
-myLibrary.buildCard(2);
+myLibrary.buildCard(myLibrary.add(new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 0, 99121, "978-0060935467", "literary fiction")));
