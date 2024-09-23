@@ -12,6 +12,7 @@ formContainer.toggle = () => {
 
 submitBtn.addEventListener("click", (e) => {
     formContainer.toggle();
+    e.preventDefault();
 });
 
 newBookBtn.addEventListener("click", (e) => {
@@ -74,3 +75,8 @@ myLibrary.add(_Farm);
 myLibrary.buildCard(0);
 myLibrary.buildCard(1);
 myLibrary.buildCard(2);
+myLibrary.buildCard(0);
+myLibrary.buildCard(1);
+myLibrary.buildCard(2);
+myLibrary.buildCard(0);
+myLibrary.buildCard(1);
