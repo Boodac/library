@@ -1,7 +1,6 @@
 
 // dom code
 const template = document.querySelector("#bookCard");
-console.log(template.content);
 const container = document.querySelector(".container");
 const newBookBtn = document.querySelector(".new-book");
 const formContainer = document.querySelector("#form-container");
@@ -9,7 +8,7 @@ const form = document.querySelector("form");
 const submitBtn = document.querySelector(".submission");
 formContainer.toggle = () => {
     (formContainer.style["display"] === "flex") ? formContainer.style["display"] = "none" : formContainer.style["display"] = "flex";
-}
+};
 
 submitBtn.addEventListener("click", (e) => {
     formContainer.toggle();
@@ -29,6 +28,20 @@ let myLibrary = {
             this.books.push(bookObject); 
             bookObject.id = this.books.indexOf(bookObject); 
         }
+    },
+    buildCard: function(libraryIndex) {
+        const card = template.content.cloneNode(true);
+        let entry = card.querySelectorAll("p");
+        entry[0].textContent = "Title: " + myLibrary.books[libraryIndex].name;
+        entry[1].textContent = "Author: " + myLibrary.books[libraryIndex].author;
+        entry[2].textContent = "Published: " + myLibrary.books[libraryIndex].year;
+        entry[3].textContent = "Word Count: " + myLibrary.books[libraryIndex].wordCount;
+        entry[4].textContent = "Page Count: " + myLibrary.books[libraryIndex].pageCount;
+        entry[5].textContent = "ISBN-13: " + myLibrary.books[libraryIndex].isbn13;
+        entry[6].textContent = "Genre: " + myLibrary.books[libraryIndex].genre;
+        entry[7].textContent = myLibrary.books[libraryIndex].status;
+        myLibrary.books[libraryIndex].status === "unread" ? card.children[0].classList.add("unread") : card.children[0].classList.add("read");
+        container.appendChild(card);
     }    
 };
 
@@ -40,9 +53,9 @@ function Book(bookName = "The Default Book", authorName = "boodac", yearPublishe
     this.wordCount = wordCount;
     this.pageCount = pageCount;
     this.status = status;
-    this.id = undefined;
     this.isbn13 = isbn13;
     this.genre = genre;
+    this.id = undefined;
 
     if(wordCount > 0) {
         this.length = wordCount;
@@ -53,13 +66,11 @@ function Book(bookName = "The Default Book", authorName = "boodac", yearPublishe
 
 const _Pride = new Book("Pride and Prejudice", "Jane Austen", "1813", "unread", 279, 122204, 9780144139518, "romance");
 const _Kill = new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 281, 99121, 9780060935467, "literary fiction");
-const _Farm = new Book("Animal Farm", "George Orwell", "1945", 92 , 29966, 9780452284241, "satire");
+const _Farm = new Book("Animal Farm", "George Orwell", "1945", "read", 92, 29966, 9780452284241, "satire");
 myLibrary.add(_Pride);
 myLibrary.add(_Kill);
 myLibrary.add(_Farm);
 
-// display code
-
-function buildCard(bookArray) {
-    return NodeList;
-}
+myLibrary.buildCard(0);
+myLibrary.buildCard(1);
+myLibrary.buildCard(2);
