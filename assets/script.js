@@ -12,6 +12,43 @@ formContainer.toggle = () => {
 };
 
 submitBtn.addEventListener("click", (e) => {
+    const entries = document.querySelectorAll("input");
+    // abort form if the entire thing is blank
+    if(entries[0].value == "" && entries[1].value == "" && entries[2].value == "" &&
+        entries[3].value == "" && entries[4].value == "" && entries[5].value == ""
+        && entries[6].value == "")
+    {
+        e.preventDefault();    
+        return;
+    }
+
+    // need at least a book name
+    if(entries[0].value == "") {
+        e.preventDefault();
+        return;
+    } 
+
+    // no books from the future
+    if(entries[4].value > 2024) {
+        e.preventDefault();
+        return;
+    }
+
+    let bookName = entries[0].value;
+    let author = entries[1].value;
+    let pageCount = entries[2].value;
+    let wordCount = entries[3].value;
+    let yearPublished = entries[4].value;
+    let isbn13 = entries[5].value;
+    let genre = entries[6].value;
+    let status = entries[7].checked;
+    status ? status = "read" : status = "unread";
+    
+    myLibrary.buildCard(myLibrary.add(new Book(bookName, author, yearPublished, status, pageCount, wordCount, isbn13, genre)));
+    entries.forEach((element) => {
+        element.value = "";
+    })
+    entries[7].checked = false;
     formContainer.toggle();
     e.preventDefault();
 });
@@ -34,19 +71,22 @@ let myLibrary = {
             this.books.push(bookObject); 
             bookObject.id = this.books.indexOf(bookObject); 
         }
+        return bookObject.id;
     },
     buildCard: function(libraryIndex) {
         const card = template.content.cloneNode(true);
         card.querySelector("section").id = "_" + myLibrary.books[libraryIndex].id;
         let entry = card.querySelectorAll("p");
         entry[0].textContent = myLibrary.books[libraryIndex].name;
-        entry[1].querySelector("span").textContent = myLibrary.books[libraryIndex].author;
-        entry[2].querySelector("span").textContent = myLibrary.books[libraryIndex].year;
+        if(myLibrary.books[libraryIndex].author != "") entry[1].querySelector("span").textContent = myLibrary.books[libraryIndex].author;
+        else entry[1].querySelector("span").textContent = "Anonymous";
+        if(myLibrary.books[libraryIndex].year != "") entry[2].querySelector("span").textContent = myLibrary.books[libraryIndex].year;
+        else entry[2].querySelector("span").textContent = "Unknown";
 
-        if(myLibrary.books[libraryIndex].wordCount == 0) {
+        if(myLibrary.books[libraryIndex].wordCount == 0 && myLibrary.books[libraryIndex].pageCount > 0) {
             entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].pageCount + " pages";
         }
-        else if(myLibrary.books[libraryIndex].pageCount == 0) {
+        else if(myLibrary.books[libraryIndex].pageCount == 0 && myLibrary.books[libraryIndex].wordCount > 0) {
             entry[3].querySelector("span").textContent = myLibrary.books[libraryIndex].wordCount + " words";
         }
         else if(myLibrary.books[libraryIndex].pageCount > 0 && myLibrary.books[libraryIndex].wordCount > 0) {
@@ -55,8 +95,12 @@ let myLibrary = {
         }
         else entry[3].querySelector("span").textContent = "Unknown";
         
-        entry[4].querySelector("span").textContent = myLibrary.books[libraryIndex].isbn13;
-        entry[5].querySelector("span").textContent = myLibrary.books[libraryIndex].genre;
+        if(myLibrary.books[libraryIndex].isbn13 != "") entry[4].querySelector("span").textContent = myLibrary.books[libraryIndex].isbn13;
+        else entry[4].querySelector("span").textContent = "Unspecified";
+
+        if(myLibrary.books[libraryIndex].genre != "") entry[5].querySelector("span").textContent = myLibrary.books[libraryIndex].genre;
+        else entry[5].querySelector("span").textContent = "fiction";
+
         entry[6].textContent = myLibrary.books[libraryIndex].status;
         myLibrary.books[libraryIndex].status === "unread" ? card.children[0].classList.add("unread") : card.children[0].classList.add("read");
         let closeButton = card.querySelector(".close-button");
@@ -83,7 +127,7 @@ let myLibrary = {
     }
 };
 
-function Book(bookName = "The Default Book", authorName = "boodac", yearPublished = "1973", status = "unread", pageCount = 0, wordCount = 0,
+function Book(bookName = "The Default Book", authorName = "Anonymous", yearPublished = "1973", status = "unread", pageCount = 0, wordCount = 0,
                 isbn13 = "123-1234567890", genre = "unknown") {
     this.name = bookName;
     this.author = authorName;
@@ -102,7 +146,7 @@ function Book(bookName = "The Default Book", authorName = "boodac", yearPublishe
     } else this.length = -1;
 }
 
-const _Pride = new Book("Pride and Prejudice", "Jane Austen", "1813", "unread", 279, 0, "978-0144139518", "romance");
+const _Pride = new Book();
 const _Kill = new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 0, 99121, "978-0060935467", "literary fiction");
 const _Farm = new Book("Animal Farm", "George Orwell", "1945", "read", 92, 29966, "978-0452284241", "satire");
 myLibrary.add(_Pride);
