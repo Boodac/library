@@ -5,7 +5,6 @@ const container = document.querySelector(".container");
 const newBookBtn = document.querySelector(".new-book");
 const formContainer = document.querySelector("#form-container");
 const formClose = document.querySelector("#formClose");
-const form = document.querySelector("form");
 const submitBtn = document.querySelector(".submission");
 formContainer.toggle = () => {
     (formContainer.style["display"] === "flex") ? formContainer.style["display"] = "none" : formContainer.style["display"] = "flex";
@@ -127,23 +126,19 @@ let myLibrary = {
     }
 };
 
-function Book(bookName = "The Default Book", authorName = "Anonymous", yearPublished = "1973", status = "unread", pageCount = 0, wordCount = 0,
-                isbn13 = "123-1234567890", genre = "unknown") {
-    this.name = bookName;
-    this.author = authorName;
-    this.year = yearPublished;
-    this.wordCount = wordCount;
-    this.pageCount = pageCount;
-    this.status = status;
-    this.isbn13 = isbn13;
-    this.genre = genre;
-    this.id = undefined;
-
-    if(wordCount > 0) {
-        this.length = wordCount;
-    } else if (pageCount > 0) {
-        this.length = pageCount;
-    } else this.length = -1;
+class Book{
+    constructor(bookName = "The Default Book", authorName = "Anonymous", yearPublished = "1973", status = "unread", pageCount = 0, wordCount = 0,
+        isbn13 = "123-1234567890", genre = "unknown") {
+            this.name = bookName;
+            this.author = authorName;
+            this.year = yearPublished;
+            this.wordCount = wordCount;
+            this.pageCount = pageCount;
+            this.status = status;
+            this.isbn13 = isbn13;
+            this.genre = genre;
+            this.id = undefined;
+    }
 }
 
 myLibrary.buildCard(myLibrary.add(new Book("To Kill A Mockingbird", "Harper Lee", "1960", "unread", 281, 0, "978-0060935467", "literary fiction")));
